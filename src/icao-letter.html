@@ -1,0 +1,121 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="icao-letter">
+    <template>
+        <style include="iron-flex iron-flex-alignment">
+            :host {
+                margin: 5px;
+            }
+
+            paper-card {
+                padding: 10px;
+                display: inline-block;
+                font-size: 1.2em;
+                height: 100%;
+
+                @apply(--layout-vertical);
+            }
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 5px;
+                font-size: 20px;
+            }
+
+            .letter {
+                @apply --paper-font-headline;
+            }
+
+            .word {
+                @apply(--layout-flex);
+            }
+            .word:after {
+                content: '.';
+                visibility: hidden;
+            }
+
+        </style>
+
+        <div>
+            <paper-card>
+                <div class="letter"><strong>[[_upperCase]]</strong></div>
+                <div class="word">[[_word]]</div>
+            </paper-card>
+        </div>
+    </template>
+
+    <script>
+        class IcaoLetter extends Polymer.Element {
+            static get is() {
+                return 'icao-letter';
+            }
+            static get properties() {
+                return {
+                    letter: {
+                        type: String,
+                    },
+                    _upperCase: {
+                        type: String,
+                        computed: '_toUpperCase(letter)'
+                    },
+                    _word: {
+                        type: String,
+                        computed: '_toWord(_upperCase)'
+                    },
+                };
+            }
+            constructor() {
+                super();
+                this.letters = {
+                    'A': 'Alpha',
+                    'B': 'Bravo',
+                    'C': 'Charlie',
+                    'D': 'Delta',
+                    'E': 'Echo',
+                    'F': 'Foxtrot',
+                    'G': 'Golf',
+                    'H': 'Hotel',
+                    'I': 'India',
+                    'J': 'Juliett',
+                    'K': 'Kilo',
+                    'L': 'Lima',
+                    'M': 'Mike',
+                    'N': 'November',
+                    'O': 'Oscar',
+                    'P': 'Papa',
+                    'Q': 'Quebec',
+                    'R': 'Romeo',
+                    'S': 'Sierra',
+                    'T': 'Tango',
+                    'U': 'Uniform',
+                    'V': 'Victor',
+                    'W': 'Whiskey',
+                    'X': 'Xray',
+                    'Y': 'Yankee',
+                    '1': 'One',
+                    '2': 'Two',
+                    '3': 'Three',
+                    '4': 'Four',
+                    '5': 'Five',
+                    '6': 'Six',
+                    '7': 'Seven',
+                    '8': 'Eight',
+                    '9': 'Nine',
+                    '0': 'Zero',
+                };
+            }
+            _toUpperCase(letter) {
+                return letter.toUpperCase();
+            }
+
+            _toWord(_upperCase) {
+                return this.letters[_upperCase];
+            }
+        }
+
+        window.customElements.define(IcaoLetter.is, IcaoLetter);
+    </script>
+</dom-module>

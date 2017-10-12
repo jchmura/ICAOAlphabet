@@ -1,0 +1,21 @@
+{
+  "name": "ICAO phonetic alphabet",
+  "short_name": "ICAO Alphabet",
+  "description": "ICAO phonetic alphabet",
+  "icons": [
+    {
+      "src": "images/manifest/icao-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icao-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1976D2",
+  "background_color": "#1976D2"
+}

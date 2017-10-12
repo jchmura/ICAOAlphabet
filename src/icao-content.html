@@ -1,0 +1,92 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="icao-letter.html">
+
+<dom-module id="icao-content">
+    <template>
+        <style include="iron-flex iron-flex-alignment">
+            .container {
+                margin: 24px 10vw;
+                display: block;
+            }
+
+            @media (max-width:768px) {
+                .container {
+                    padding: 6px;
+                    margin: 24px 2vw 0;
+                }
+            }
+
+            paper-card {
+                padding: 16px;
+                display: block;
+                /*margin-bottom: 20px;*/
+            }
+
+            paper-input {
+                margin: 0 10vw;
+            }
+
+            .letter-container {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+
+                margin-top: 20px;
+            }
+
+        </style>
+
+        <div class="container">
+            <paper-card>
+                <paper-input label="Text to spell" autofocus="true" value="{{text}}"></paper-input>
+            </paper-card>
+            <template is="dom-repeat" items="{{letters}}" as="word">
+                <div class="letter-container">
+                    <template is="dom-repeat" items="{{word.letters}}" as="letter">
+                        <icao-letter letter="[[letter]]"></icao-letter>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <script>
+        class IcaoContent extends Polymer.Element {
+            static get is() {
+                return 'icao-content';
+            }
+            static get properties() {
+                return {
+                    text: {
+                        type: String,
+                        observer: '_textChanged',
+                    },
+                    letters: {
+                        type: Array,
+                        value: [],
+                    },
+                };
+            }
+            _textChanged(value) {
+                let words = value.split(' ');
+                this.splice('letters', 0, this.letters.length);
+                for (let word of words) {
+                    if (word.trim() !== '') {
+                        let letters = word.split('');
+                        let obj = {
+                            'word': word,
+                            'letters': letters,
+                        };
+                        this.push('letters', obj);
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(IcaoContent.is, IcaoContent);
+    </script>
+</dom-module>

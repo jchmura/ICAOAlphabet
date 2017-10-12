@@ -1,0 +1,43 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="icao-title">
+    <template>
+        <style>
+            h1 {
+                color: rgba(17, 17, 17, 0.9);
+                font-family: 'Helvetica Neue', sans-serif;
+                font-size: 100px;
+                font-weight: bold;
+                letter-spacing: -1px;
+                line-height: 1;
+                text-align: center;
+                padding: 10px;
+            }
+            @media (max-width:1200px) {
+                h1 {
+                    font-size: 75px;
+                }
+            }
+            @media (max-width:768px) {
+                h1 {
+                    font-size: 50px;
+                }
+            }
+
+        </style>
+
+        <div>
+            <h1>ICAO phonetic alphabet</h1>
+        </div>
+    </template>
+
+    <script>
+        class IcaoTitle extends Polymer.Element {
+            static get is() {
+                return 'icao-title';
+            }
+        }
+
+        window.customElements.define(IcaoTitle.is, IcaoTitle);
+    </script>
+</dom-module>

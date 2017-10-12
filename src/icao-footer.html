@@ -1,0 +1,71 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="icao-footer">
+    <template>
+        <style>
+            footer {
+                position: absolute;
+                bottom: 0;
+                height: 50px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                border-radius: 1px;
+                background-color: #1976D2;
+                box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            }
+
+            .footer-content {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .footer-item {
+                font-size: 0.9em;
+                margin: auto 10px;
+                color: #ECEFF1;
+            }
+
+            .footer-item a {
+                text-decoration: none;
+                color: unset;
+            }
+
+            .footer-item a:hover {
+                text-decoration: underline;
+            }
+
+            @media (max-width:768px) {
+                .footer-item {
+                    font-size: 0.8em;
+                }
+            }
+        </style>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-item">
+                    <a href="https://en.wikipedia.org/wiki/NATO_phonetic_alphabet">ICAO phonetic alphabet (wiki)</a>
+                </div>
+                <div class="footer-item">
+                    Created by Jakub Chmura
+                </div>
+            </div>
+        </footer>
+
+    </template>
+
+    <script>
+        class IcaoFooter extends Polymer.Element {
+            static get is() {
+                return 'icao-footer';
+            }
+        }
+
+        window.customElements.define(IcaoFooter.is, IcaoFooter);
+    </script>
+</dom-module>

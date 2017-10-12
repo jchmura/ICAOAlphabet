@@ -1,0 +1,32 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="icao-title.html">
+<link rel="import" href="icao-content.html">
+<link rel="import" href="icao-footer.html">
+
+<dom-module id="icao-alphabet">
+  <template>
+    <style>
+      :host {
+        --app-primary-color: #1976D2;
+        --app-secondary-color: black;
+
+        display: block;
+      }
+    </style>
+
+    <icao-title></icao-title>
+    <icao-content></icao-content>
+    <icao-footer></icao-footer>
+
+  </template>
+
+  <script>
+    class IcaoAlphabet extends Polymer.Element {
+      static get is() { return 'icao-alphabet'; }
+    }
+
+    window.customElements.define(IcaoAlphabet.is, IcaoAlphabet);
+  </script>
+</dom-module>
