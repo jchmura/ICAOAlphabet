@@ -28,6 +28,6 @@ module.exports = {
     },
   ],
   importScripts: [
-    'src/service-worker/google-analytics.js',
+    '/src/service-worker/google-analytics.js',
   ],
 };
