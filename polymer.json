@@ -10,7 +10,8 @@
   ],
   "extraDependencies": [
     "manifest.json",
-    "bower_components/webcomponentsjs/*.js"
+    "bower_components/webcomponentsjs/*.js",
+    "node_modules/sw-offline-google-analytics/build/importScripts/sw-offline-google-analytics.prod.*"
   ],
   "lint": {
     "rules": ["polymer-2"]

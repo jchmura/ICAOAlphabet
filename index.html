@@ -55,6 +55,28 @@
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
     <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46853338-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-46853338-3', {
+            'custom_map': {'dimension1': 'Online'},
+        });
+        gtag('event', 'online_dimension', {'Online': navigator.onLine});
+    </script>
+
+    <script>
+        // Setup a listener to track Add to Homescreen events.
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.userChoice.then((choiceResult) => {
+                gtag('event', 'sign_up', {'method': choiceResult.outcome});
+            });
+        });
+    </script>
+
     <!-- Load your application shell -->
     <link rel="import" href="src/icao-alphabet.html">
 
