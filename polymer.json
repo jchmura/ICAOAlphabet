@@ -6,7 +6,8 @@
   ],
   "sources": [
     "src/**/*",
-    "images/**/*"
+    "images/**/*",
+    "audio/**/*"
   ],
   "extraDependencies": [
     "manifest.json",

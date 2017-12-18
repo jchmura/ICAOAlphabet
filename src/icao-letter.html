@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icons/av-icons.html">
 
 <dom-module id="icao-letter">
     <template>
@@ -26,7 +27,14 @@
             }
 
             .letter {
-                @apply --paper-font-headline;
+                @apply(--paper-font-headline);
+                @apply(--layout-horizontal);
+                @apply(--layout-justified);
+            }
+
+            #letter {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
             }
 
             .word {
@@ -41,7 +49,17 @@
 
         <div>
             <paper-card>
-                <div class="letter"><strong>[[_upperCase]]</strong></div>
+                <template is="dom-if" if="[[_word]]">
+                    <audio id="audio" preload="auto">
+                        <source src="./audio/[[_upperCase]].ogg" type="audio/ogg">
+                    </audio>
+                </template>
+                <div class="letter">
+                    <div id="letter"><strong>[[_upperCase]]</strong></div>
+                    <template is="dom-if" if="[[_word]]">
+                        <div id="audio-button"><paper-icon-button suffix on-click="_playAudio" icon="av:volume-up" alt="sound" title="play"></paper-icon-button></div>
+                    </template>
+                </div>
                 <div class="word">[[_word]]</div>
             </paper-card>
         </div>
@@ -59,11 +77,11 @@
                     },
                     _upperCase: {
                         type: String,
-                        computed: '_toUpperCase(letter)'
+                        computed: '_toUpperCase(letter)',
                     },
                     _word: {
                         type: String,
-                        computed: '_toWord(_upperCase)'
+                        computed: '_toWord(_upperCase)',
                     },
                 };
             }
@@ -114,6 +132,9 @@
 
             _toWord(_upperCase) {
                 return this.letters[_upperCase];
+            }
+            _playAudio() {
+                this.shadowRoot.querySelector('#audio').play();
             }
         }
 
